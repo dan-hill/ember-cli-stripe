@@ -22,8 +22,8 @@ test('it renders', function(assert) {
 
 test('it renders with the default text', function(assert) {
   assert.expect(1);
-  
-  var component = this.subject();
+
+  this.subject();
   this.append();
 
   assert.equal($.trim($('.stripe-checkout').text()), "Pay with card");
