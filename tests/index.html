@@ -13,32 +13,16 @@
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/dummy.css">
     <link rel="stylesheet" href="assets/test-support.css">
-    <style>
-      #ember-testing-container {
-        position: absolute;
-        background: white;
-        bottom: 0;
-        right: 0;
-        width: 640px;
-        height: 384px;
-        overflow: auto;
-        z-index: 9999;
-        border: 1px solid #ccc;
-      }
-      #ember-testing {
-        zoom: 50%;
-      }
-    </style>
+
+    {{content-for 'head-footer'}}
+    {{content-for 'test-head-footer'}}
   </head>
   <body>
-    <div id="qunit"></div>
-    <div id="qunit-fixture"></div>
 
     {{content-for 'body'}}
     {{content-for 'test-body'}}
-    
-    <!-- Adding the raw script from https://checkout.stripe.com/checkout.js so it creates the 
-    StripeCheckout global variable for us. This is clearly terrible - in fact, my eyes are burning. 
+    <!-- Adding the raw script from https://checkout.stripe.com/checkout.js so it creates the
+    StripeCheckout global variable for us. This is clearly terrible - in fact, my eyes are burning.
     Not sure the best way to do this but there has to be a more elegant way (stub, load file locally
     using the 'test-body' hook above?)
     TODO: Learn how to do this dependency injection correctly -->
@@ -52,5 +36,8 @@
     <script src="assets/dummy.js"></script>
     <script src="testem.js"></script>
     <script src="assets/test-loader.js"></script>
+
+    {{content-for 'body-footer'}}
+    {{content-for 'test-body-footer'}}
   </body>
 </html>
