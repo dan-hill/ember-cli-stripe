@@ -137,7 +137,7 @@ export default Ember.Service.extend(Ember.Evented, {
       const optionValue = options[key];
       const value = this.getOptionOrDefault(key, optionValue);
 
-      this.set(key, options[key]);
+      this.set(key, value);
     }
   },
 
