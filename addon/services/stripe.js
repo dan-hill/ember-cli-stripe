@@ -146,7 +146,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
   setTarget: function(component) {
     // TODO: improve working with multiple components on the same page
-    Ember.assert("You can't use same Stripe service with multiple {{stripe-checkout}} components! Please add a source to the `second` {{stripe-checkout}} component", !this.get('target'));
+    Ember.assert("You can't use same Stripe service with multiple {{stripe-checkout}} components! Please add a source to the `second` {{stripe-checkout}} component", !this.get('target') || component === null);
     this.set('target', component);
   },
 
