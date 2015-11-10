@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/stripe-checkout';
+import StripeConfig from 'ember-cli-stripe/mixins/stripe-config';
 
 /**
  * Stripe checkout component for accepting payments with
@@ -13,7 +14,7 @@ import layout from '../templates/components/stripe-checkout';
  *   amount=billingPlan.amount
  * }}
  */
-export default Ember.Component.extend({
+export default Ember.Component.extend(StripeConfig, {
   layout: layout,
   tagName: 'button',
   classNames: ['stripe-checkout'],
@@ -21,115 +22,6 @@ export default Ember.Component.extend({
 
   stripe: Ember.inject.service(),
   source: Ember.computed.oneWay('stripe'),
-
-  /**********************************
-   * Required attributes
-   **********************************/
-
-  /**
-   * Your publishable key (test or live).
-   */
-  key: null,
-
-  /**********************************
-   * Highly recommended attributes
-   **********************************/
-
-  /**
-   * A relative URL pointing to a square image of your brand or
-   * product. The recommended minimum size is 128x128px.
-   * Eg. "/square-image.png"
-   */
-  image: null,
-
-  /**
-   * The name of your company or website.
-   */
-  name: null,
-
-  /**
-   * A description of the product or service being purchased.
-   */
-  description: null,
-
-  /**
-   * The amount (in cents) that's shown to the user. Note that you
-   * will still have to explicitly include it when you create a
-   * charge using the Stripe API.
-   */
-  amount: null,
-
-  /**********************************
-   * Optional attributes
-   **********************************/
-
-  /**
-   * Accept Bitcoin payments.
-   */
-  bitcoin: null,
-
-  /**
-   * The currency of the amount (3-letter ISO code). The default is USD.
-   */
-  currency: null,
-
-  /**
-   * The label of the payment button in the Checkout form (e.g. “Subscribe”,
-   * “Pay {{amount}}”, etc.). If you include {{amount}}, it will be replaced
-   * by the provided amount. Otherwise, the amount will be appended to the
-   * end of your label.
-   */
-  panelLabel: null,
-
-  /**
-   * Specify whether Checkout should validate the billing ZIP code
-   * (true or false). The default is false.
-   */
-  zipCode: null,
-
-  /**
-   * Specify whether Checkout should collect the customer's billing address
-   * (true or false). The default is false.
-   */
-  address: null,
-
-  /**
-   * If you already know the email address of your user, you can provide
-   * it to Checkout to be pre-filled.
-   */
-  email: null,
-
-  /**
-   * The text to be shown on the default blue button.
-   */
-  label: null,
-
-  /**
-   * Specify whether to include the option to "Remember Me" for future
-   * purchases (true or false). The default is true.
-   */
-  allowRememberMe: null,
-
-  /**
-   * Specify whether to include the option to use alipay to
-   * checkout (true or false or auto). The default is false.
-   */
-  alipay: null,
-
-  /**
-   * Specify whether to reuse alipay information to
-   * checkout (true or false). The default is false.
-   */
-  'alipay-reusable': null,
-
-  /**
-   * Specify language preference.
-   */
-  locale: null,
-
-  /**********************************
-   * Extras
-   **********************************/
 
   /**
    * Bind to this attribute to disable the stripe
