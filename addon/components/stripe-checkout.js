@@ -75,10 +75,12 @@ export default Ember.Component.extend(StripeConfig, {
    * Opens the Stripe modal for payment
    */
   openCheckout: function() {
+    this.get('source').setTarget(this);
     this.get('source').open();
   },
 
   closeCheckout: function() {
+    this.get('source').setTarget(this);
     this.get('source').close();
   },
 
@@ -103,4 +105,6 @@ export default Ember.Component.extend(StripeConfig, {
   onToken: function(token) {
     this.sendAction('action', token);
   },
+
+  hasBlock: Ember.computed.bool('template').readOnly(),
 });
