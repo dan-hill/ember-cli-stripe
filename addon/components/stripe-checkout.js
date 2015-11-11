@@ -43,8 +43,8 @@ export default Ember.Component.extend(StripeConfig, {
 
     // setup event listeners
     ['opened', 'closed', 'token'].forEach((eventName) => {
-      if (this.get(eventName)) {
-        const eventListener = 'on_' + eventName.classify();
+      if (this.get(eventName) || eventName === 'token') {
+        const eventListener = 'on' + eventName.classify();
         this.get('source').on(eventName, this, eventListener);
       }
     });
