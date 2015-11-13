@@ -8,11 +8,6 @@ var Stripe = Ember.Service.extend(Ember.Evented, StripeConfig, {
     this.setupOptions();
   },
 
-  // initializeService: Ember.on('init', function() {
-  //   debugger;
-  //   this.setupOptions();
-  // }),
-
   setupOptions: function() {
     const options = this.get('defaultOptions') || Stripe.defaultOptions;
     for (let key in options) {
