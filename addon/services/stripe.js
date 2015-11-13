@@ -1,15 +1,20 @@
 import Ember from 'ember';
 import StripeConfig from 'ember-cli-stripe/mixins/stripe-config';
 
-export default Ember.Service.extend(Ember.Evented, StripeConfig, {
+var Stripe = Ember.Service.extend(Ember.Evented, StripeConfig, {
 
   init: function() {
     this._super(...arguments);
     this.setupOptions();
   },
 
+  // initializeService: Ember.on('init', function() {
+  //   debugger;
+  //   this.setupOptions();
+  // }),
+
   setupOptions: function() {
-    const options = this.get('defaultOptions');
+    const options = this.get('defaultOptions') || Stripe.defaultOptions;
     for (let key in options) {
       const optionValue = options[key];
       const value = this.getOptionOrDefault(key, optionValue);
@@ -93,5 +98,19 @@ export default Ember.Service.extend(Ember.Evented, StripeConfig, {
     }
 
     return value;
+  },
+});
+
+export default Stripe.reopenClass({
+  defaultOptions: {},
+
+  property() {
+    return Ember.computed(function() {
+      return Stripe.create();
+    });
+  },
+
+  setDefaultOptions: function(options) {
+    this.defaultOptions = options;
   },
 });
