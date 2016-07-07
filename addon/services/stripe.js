@@ -42,8 +42,8 @@ var Stripe = Ember.Service.extend(Ember.Evented, StripeConfig, {
   },
 
   open: function() {
-    let options = this.getStripeOptions();
-    this.getHandler().open(options);
+    let stripeoptions = JSON.parse(JSON.stringify(this.getStripeOptions()));
+    this.getHandler().open(stripeoptions);
   },
 
   close: function() {
