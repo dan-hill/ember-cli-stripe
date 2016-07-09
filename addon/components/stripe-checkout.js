@@ -22,7 +22,7 @@ export default Ember.Component.extend(StripeConfig, {
 
   stripe: Ember.inject.service(),
   source: Ember.computed.oneWay('stripe'),
-
+  extraParams:null,
   /**
    * Bind to this attribute to disable the stripe
    * button until the user completes prior requirements
@@ -103,7 +103,7 @@ export default Ember.Component.extend(StripeConfig, {
    * Source: https://stripe.com/docs/api#tokens
    */
   onToken: function(token) {
-    this.sendAction('action', token);
+    this.sendAction('action', token,this.get('extraParams'));
   },
 
   hasBlock: Ember.computed.bool('template').readOnly(),
